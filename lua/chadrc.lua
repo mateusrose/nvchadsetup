@@ -7,9 +7,11 @@ local M = {}
 
 M.base46 = {
 	theme = "doomchad",
-	-- hl_override = {
+	hl_override = {
+    CustomSymbols = { fg = "#77DD77"}
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
-	-- },
+	 },
 }
+
 return M
