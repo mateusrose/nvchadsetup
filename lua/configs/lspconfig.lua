@@ -18,7 +18,7 @@ lspconfig.pyright.setup({
   capabilities = nvlsp.capabilities,
   settings = {
     python = {
-      pythonPath = '/home/mateus/.pyenv/versions/3.12.3/bin/python'
+      pythonPath = '/home/mateusrosa/.pyenv/versions/3.12.3/bin/python'
     }
   }
 })

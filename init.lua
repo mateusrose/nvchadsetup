@@ -14,10 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "configs.lazy"
 
 
--- tab change
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+
+--fold method 
+vim.o.foldmethod = "indent"
+vim.o.foldlevel = 4
 
 -- load plugins
 require("lazy").setup({
@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-vim.g.python3_host_prog = '/home/mateus/.pyenv/versions/3.12.3/bin/python'
+vim.g.python3_host_prog = '/home/mateusrosa/.pyenv/versions/3.12.3/bin/python'
 
 require "options"
 require "nvchad.autocmds"
@@ -48,3 +48,10 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- tab change
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
