@@ -55,3 +55,26 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+
+
+-- React component shortcut
+function InsertReactComponent()
+  -- Get the current filename without extension
+  local filename = vim.fn.expand('%:t:r')
+
+  -- Insert the component boilerplate code at the current line
+  vim.api.nvim_buf_set_lines(0, vim.fn.line('.'), vim.fn.line('.'), false, {
+    'const ' .. filename .. ' = () => {',
+    '  return (',
+    '    <>',
+    '    </>',
+    '  )',
+    '}',
+    '',
+    'export default ' .. filename
+  })
+end
+
+-- Create a custom command :Rec to call the function
+vim.api.nvim_create_user_command('Comp', InsertReactComponent, {})
+
