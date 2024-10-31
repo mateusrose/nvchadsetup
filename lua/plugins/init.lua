@@ -4,7 +4,13 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
-
+  {
+    "mhartington/formatter.nvim",
+    event="VeryLazy",
+    opts = function ()
+      return require "custom.configs.formatter"
+    end
+  },
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
