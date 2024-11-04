@@ -28,14 +28,42 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
+    dependencies = "vscode-js-debug",
     config = function ()
       require "custom.configs.dap"
       require "custom.mappings"
     end
   },
   {
-  "microsoft/vscode-js-debug",  -- The JS Debugger for VS Code
-  lazy = true,
+    "microsoft/vscode-js-debug",  -- The JS Debugger for VS Code
+    lazy = true,
+    build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
+  },
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    config = function()
+      require('dap-vscode-js').setup({
+        adapters = { "pwa-chrome", "pwa-node" },  -- Use the Firefox adapter
+      --debugger_path = vim.fn.stdpath('data') .. "/lazy/vscode-js-debug",
+      --configurations = {
+       -- {
+        --  type = "pwa-chrome",
+        --  request = "launch",
+        --  name = "Launch Chrome",
+        --  url = "http://localhost:5173",  -- URL of your live website
+         -- webRoot = "${workspaceFolder}",  -- Adjust to your project folder
+        --},
+        --{
+         -- type = "pwa-chrome",
+          --request = "attach",
+         -- name = "Attach to Chrome",
+         -- port = 9222,  -- Make sure this port matches your Firefox remote debugging port
+          --webRoot = "${workspaceFolder}",  -- Adjust to your project folder
+        --},
+      --},
+      })
+      require("custom.configs.dap")
+    end,
   },
   {
     "mhartington/formatter.nvim",

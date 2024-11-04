@@ -15,7 +15,7 @@ local lazy_config = require "configs.lazy"
 
 
 
---fold method 
+--fold method
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 4
 
@@ -77,4 +77,3 @@ end
 
 -- Create a custom command :Rec to call the function
 vim.api.nvim_create_user_command('Comp', InsertReactComponent, {})
-
