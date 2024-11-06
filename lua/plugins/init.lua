@@ -1,70 +1,54 @@
 return {
-  {
-    "stevearc/conform.nvim",
+  --{
+   -- "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
-  {
-    "nvim-neotest/nvim-nio"
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    event = "VeryLazy",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function ()
-      local dap = require("dap")
-      local dapui = require("dapui")
-      require("dapui").setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function ()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function ()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function ()
-        dapui.close()
-      end
-    end
-  },
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = "vscode-js-debug",
-    config = function ()
-      require "custom.configs.dap"
-      require "custom.mappings"
-    end
-  },
-  {
-    "microsoft/vscode-js-debug",  -- The JS Debugger for VS Code
-    lazy = true,
-    build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out"
-  },
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    config = function()
-      require('dap-vscode-js').setup({
-        adapters = { "pwa-chrome", "pwa-node" },  -- Use the Firefox adapter
-      --debugger_path = vim.fn.stdpath('data') .. "/lazy/vscode-js-debug",
-      --configurations = {
-       -- {
-        --  type = "pwa-chrome",
-        --  request = "launch",
-        --  name = "Launch Chrome",
-        --  url = "http://localhost:5173",  -- URL of your live website
-         -- webRoot = "${workspaceFolder}",  -- Adjust to your project folder
-        --},
-        --{
-         -- type = "pwa-chrome",
-          --request = "attach",
-         -- name = "Attach to Chrome",
-         -- port = 9222,  -- Make sure this port matches your Firefox remote debugging port
-          --webRoot = "${workspaceFolder}",  -- Adjust to your project folder
-        --},
-      --},
-      })
-      require("custom.configs.dap")
-    end,
-  },
+  --  opts = require "configs.conform",
+ -- },
+--  {
+ --   "nvim-neotest/nvim-nio"
+ -- },
+ -- {
+ --   "rcarriga/nvim-dap-ui",
+ --   event = "VeryLazy",
+ --   dependencies = "mfussenegger/nvim-dap",
+  --  config = function ()
+   --   local dap = require("dap")
+    --  local dapui = require("dapui")
+   --   require("dapui").setup()
+    --  dap.listeners.after.event_initialized["dapui_config"] = function ()
+     --   dapui.open()
+    --  end
+     -- dap.listeners.before.event_terminated["dapui_config"] = function ()
+    --    dapui.close()
+    --  end
+    --  dap.listeners.before.event_exited["dapui_config"] = function ()
+    --    dapui.close()
+    --  end
+   -- end
+  --},
+  --{
+   -- "mfussenegger/nvim-dap",
+   -- dependencies = "vscode-js-debug",
+   -- config = function ()
+   --   require "custom.configs.dap"
+    --  require "custom.mappings"
+   -- end
+  --},
+  --{
+  --  "microsoft/vscode-js-debug",  -- The JS Debugger for VS Code
+   -- lazy = true,
+--    build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && Remove-Item -Recurse -Force out && Move-Item dist out"
+  --},
+ -- {
+   -- "mxsdev/nvim-dap-vscode-js",
+   -- config = function()
+    --  require('dap-vscode-js').setup({
+     --   debugger_path = "C:\\Users\\pedro\\AppData\\Local\\nvim-data\\lazy\\vscode-js-debug",
+     --   adapters = { "pwa-chrome", "pwa-node" },  -- Use the Firefox adapter
+      --   })
+     -- require("custom.configs.dap")
+   -- end,
+  --},
   {
     "mhartington/formatter.nvim",
     event="VeryLazy",
@@ -107,4 +91,11 @@ return {
   -- 		},
   -- 	},
   -- },
+
+
+
+
+
+
+
 }
