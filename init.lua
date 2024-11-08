@@ -50,7 +50,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-vim.g.python3_host_prog = '/home/mateusrosa/.pyenv/versions/3.12.3/bin/python'
+vim.g.python3_host_prog = 'C:\\Users\\pedro\\.pyenv\\pyenv-win\\versions\\3.10.5'
+
 
 require "options"
 require "nvchad.autocmds"
@@ -85,9 +86,18 @@ function InsertReactComponent()
   })
 end
 
+function InsertArrowFunction()
+  -- Insert the arrow function snippet at the current line
+  vim.api.nvim_buf_set_lines(0, vim.fn.line('.'), vim.fn.line('.'), false, {
+    '() => {',
+    '}'
+  })
+end
+
+-- Define the :Af command to trigger InsertArrowFunction
+vim.api.nvim_create_user_command('Af', InsertArrowFunction, {})
+
 -- Create a custom command :Rec to call the function
-
-
 
 
 vim.api.nvim_create_user_command('Comp', InsertReactComponent, {})
