@@ -13,18 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
-vim.opt.shell = "pwsh"
-vim.opt.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
-vim.opt.shellxquote = ''
-
--- Add npm's global bin path to Neovim's environment on Windows
-if vim.fn.has("win32") == 1 then
-  local npm_global_path = "C:\\Users\\pedro\\AppData\\Roaming\\npm"  -- Replace with the path returned by `npm config get prefix`
-  vim.env.PATH = npm_global_path .. ";" .. vim.env.PATH  -- Prepend the npm global path to the existing PATH
-end
-
-
-
 --fold method
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 4
@@ -50,7 +38,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-vim.g.python3_host_prog = 'C:\\Users\\pedro\\.pyenv\\pyenv-win\\versions\\3.10.5'
+vim.g.python3_host_prog = '/home/mateusrosa/.pyenv/versions/3.8.20'
 
 
 require "options"
