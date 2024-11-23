@@ -89,3 +89,5 @@ vim.api.nvim_create_user_command('Af', InsertArrowFunction, {})
 
 
 vim.api.nvim_create_user_command('Comp', InsertReactComponent, {})
+
+require("telescope").load_extension("yank_history")
