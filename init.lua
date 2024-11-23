@@ -29,6 +29,8 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+require("telescope").load_extension("yank_history")
+
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     command = "NvimTreeToggle"
@@ -89,5 +91,3 @@ vim.api.nvim_create_user_command('Af', InsertArrowFunction, {})
 
 
 vim.api.nvim_create_user_command('Comp', InsertReactComponent, {})
-
-require("telescope").load_extension("yank_history")
