@@ -18,8 +18,8 @@ map("n", "p", "<Plug>(YankyPutAfter)", opts)
 map("n", "P", "<Plug>(YankyPutBefore)", opts)
 
 -- Yanky Cycle History
-map("n", "<c-n>", "<Plug>(YankyNextEntry)", opts)
-map("n", "<c-p>", "<Plug>(YankyPreviousEntry)", opts)
+--map("n", "<c-n>", "<Plug>(YankyNextEntry)", opts)
+--map("n", "<c-p>", "<Plug>(YankyPreviousEntry)", opts)
 
 -- Yank Highlight
 map("n", "y", "<Plug>(YankyYank)", opts)
