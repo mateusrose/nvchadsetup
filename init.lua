@@ -18,7 +18,6 @@ vim.o.foldmethod = "indent"
 vim.o.foldlevel = 4
 
 -- require("plugins.dap")
-
 -- load plugins
 require("lazy").setup({
   {

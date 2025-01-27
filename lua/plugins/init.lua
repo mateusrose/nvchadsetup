@@ -127,7 +127,10 @@ return {
         },
       })
     end,
-  }
+  },
+  { 'neoclide/coc.nvim', branch = 'release',
+    lazy = false,
+  },
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
