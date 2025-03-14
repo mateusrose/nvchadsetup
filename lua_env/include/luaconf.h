@@ -764,4 +764,3 @@ union luai_Cast { double l_d; long l_l; };
 #define LUA_PATH_DEFAULT "./?.lua;/home/mateus/.config/nvim/lua_env/share/lua/5.1/?.lua;/home/mateus/.config/nvim/lua_env/share/lua/5.1/?/init.lua"
 #define LUA_CPATH_DEFAULT "./?.so;/home/mateus/.config/nvim/lua_env/lib/lua/5.1/?.so;/home/mateus/.config/nvim/lua_env/lib/lua/5.1/loadall.so"
 #endif
-

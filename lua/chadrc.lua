@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "bearded-arc",
+	theme = "nightfox",
 	hl_override = {
     CustomSymbols = { fg = "#77DD77"}
 	-- 	Comment = { italic = true },

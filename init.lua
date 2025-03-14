@@ -51,6 +51,28 @@ vim.schedule(function()
   require "mappings"
 end)
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 then
+      vim.cmd("Nvdash")
+    end
+  end,
+})
+
+-- add telescope resume keymaps
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fr",
+  ":Telescope resume<CR>",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fn",
+  ":Nvdash<CR>",
+  { noremap = true, silent = true }
+)
+
 -- tab change
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
