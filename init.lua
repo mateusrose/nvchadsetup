@@ -80,7 +80,7 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
-
+-- vim.api.nvim_set_hl(0, "@styled", { link = "css" })
 -- React component shortcut
 function InsertReactComponent()
   -- Get the current filename without extension

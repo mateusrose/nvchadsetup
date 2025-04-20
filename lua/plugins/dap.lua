@@ -253,6 +253,19 @@ return {
             -- Logging level for output to console. Set to false to disable console output.
             -- log_console_level = vim.log.levels.ERROR,
           })
+          local dap = require("dap")
+    -- Explicitly define the pwa-chrome adapter with port and path
+    dap.adapters["pwa-chrome"] = {
+      type = "server",
+      host = "localhost",
+      port = 9222,  -- Set a free port of your choice
+      executable = {
+        command = "node",
+        args = {
+          vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/out/src/vsDebugServer.js"),
+        },
+      },
+    }
         end,
       },
       {
