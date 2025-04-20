@@ -27,6 +27,11 @@ map("n", "y", "<Plug>(YankyYank)", opts)
 km("n","<leader>fr",":Telescope resume<CR>",opts)
 km("n","<leader>fn",":Nvdash<CR>",opts)
 
+map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP: Telescope references" })
+-- usual reference with normal
+--vim.keymap.set('n', 'gr', function()
+--  vim.lsp.buf.references()
+-- end, { desc = "LSP: References" })
 -- … add more here
 
 --if dap_mappings.setup then

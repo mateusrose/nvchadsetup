@@ -2,14 +2,13 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright", "jdtls", "ts_ls", "tailwindcss"}
+local servers = { "html", "cssls", "pyright", "jdtls", "tailwindcss"}
 local nvlsp = require "nvchad.configs.lspconfig"
 
 require("lspconfig").ts_ls.setup (
   {
-    filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"}
+    filetypes = {"javascript", "javascriptreact"}
   }
 )
 
