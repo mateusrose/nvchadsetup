@@ -19,6 +19,7 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+require("configs.dap")
 
 -- base settings, keymaps, autocommands
 require "configs.autocmds"
