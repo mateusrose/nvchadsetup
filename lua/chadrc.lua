@@ -32,7 +32,7 @@ M.base46 = {
       },
       base_16 = {
         base05 = "#d3c6aa",
-        base06 = "#ddd0b4",
+        base06 = "#d3c6aa",
         base07 = "#e7dabe",
         base08 = "#7fbbb3",
         base09 = "#e69875",
