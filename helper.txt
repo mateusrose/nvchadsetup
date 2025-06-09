@@ -1,0 +1,4 @@
+
+// so i can use eslint in coc.nvim
+:CocInstall coc-eslint
+
