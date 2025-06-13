@@ -20,6 +20,8 @@ require("lazy").setup({
 }, lazy_config)
 
 require("configs.dap")
+require("configs.treesitter")
+require("configs.mason")
 
 -- base settings, keymaps, autocommands
 require "configs.autocmds"
