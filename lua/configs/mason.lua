@@ -18,6 +18,7 @@ require("mason-tool-installer").setup({
     "typescript-language-server",
     "tailwindcss-language-server",
     "vue-language-server",
+    "sonarlint-language-server",
   },
   auto_update = false,
   run_on_start = true,

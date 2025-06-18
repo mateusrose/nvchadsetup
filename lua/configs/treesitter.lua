@@ -23,6 +23,7 @@ require('nvim-treesitter.configs').setup {
     "sql",
     "styled",
     "typescript",
+    "tsx",
     "xml",
     -- add others as needed
   },
