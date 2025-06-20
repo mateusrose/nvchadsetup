@@ -1,5 +1,43 @@
 require("mason").setup()
 
+require("sonarlint").setup {
+  server = {
+    cmd = {
+      "sonarlint-language-server",
+      -- Optionally include path to node, if needed
+      -- "node",
+      -- "/path/to/sonarlint-language-server.js",
+      "-stdio",
+      "-analyzers",
+      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+      vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarhtml.jar"),
+    },
+  },
+  filetypes = {
+    "cs",
+    "dockerfile",
+    "python",
+    -- "html",
+    "cpp",
+    "java",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+  },
+  settings = {
+    sonarlint = {
+      -- rules = {
+        -- Example: disable a rule
+        -- ["typescript:S1234"] = { level = "off" }
+      -- },
+    },
+  },
+}
+
 require("mason-tool-installer").setup({
   ensure_installed = {
     "css-lsp",

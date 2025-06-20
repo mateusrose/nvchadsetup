@@ -4,10 +4,8 @@ vim.g.mapleader = " "
 local lazy_config = require "configs.lazy"
 -- bootstrap lazy.nvim
 require "core.bootstrap"
-
 -- load plugin manager configuration
 require "configs.lazy"
-
 require("lazy").setup({
   {
     "NvChad/NvChad",
