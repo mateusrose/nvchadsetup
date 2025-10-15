@@ -1,18 +1,24 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
+local lspconfig = vim.lsp.config;
 -- EXAMPLE
 local servers = { "html", "cssls", "pyright", "jdtls", "tailwindcss"}
 local nvlsp = require "nvchad.configs.lspconfig"
 
-require("lspconfig").ts_ls.setup (
+lspconfig('ts_ls',
   {
     filetypes = {"javascript", "javascriptreact"}
   }
 )
 
-lspconfig.pyright.setup({
+lspconfig('jsonls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+lspconfig('pyright', {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -23,13 +29,13 @@ lspconfig.pyright.setup({
   }
 })
 -- lsps with default config
-for _, lsp in ipairs(servers) do
-  if lsp ~= "pyright" then
-    lspconfig[lsp].setup {
-      on_attach = nvlsp.on_attach,
-      on_init = nvlsp.on_init,
-      capabilities = nvlsp.capabilities,
-    }
+ for _, lsp in ipairs(servers) do
+   if lsp ~= "pyright" then
+     lspconfig(lsp, {
+       on_attach = nvlsp.on_attach,
+       on_init = nvlsp.on_init,
+     capabilities = nvlsp.capabilities,
+     })
   end
 end
 

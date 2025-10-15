@@ -23,10 +23,10 @@ require("sonarlint").setup {
     -- "html",
     "cpp",
     "java",
-    "typescript",
-    "typescriptreact",
-    "javascript",
-    "javascriptreact",
+    --"typescript",
+    --"typescriptreact",
+    -- "javascript",
+    -- "javascriptreact",
   },
   settings = {
     sonarlint = {
@@ -57,6 +57,7 @@ require("mason-tool-installer").setup({
     "tailwindcss-language-server",
     "vue-language-server",
     "sonarlint-language-server",
+    "xmlformatter",
   },
   auto_update = false,
   run_on_start = true,

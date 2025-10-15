@@ -13,6 +13,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 local opts = { noremap = true, silent = true }
+--[[
 -- Yanky Put
 map("n", "p", "<Plug>(YankyPutAfter)", opts)
 map("n", "P", "<Plug>(YankyPutBefore)", opts)
@@ -22,6 +23,7 @@ map("n", "P", "<Plug>(YankyPutBefore)", opts)
 
 -- Yank Highlight
 map("n", "y", "<Plug>(YankyYank)", opts)
+]]
 -- lua/configs/keymaps.lua
 -- telescope
 km("n","<leader>fr",":Telescope resume<CR>",opts)
