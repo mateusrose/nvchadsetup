@@ -12,11 +12,20 @@ lspconfig('ts_ls',
   }
 )
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 lspconfig('jsonls', {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+  capabilities = capabilities,
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
+  init_options = {
+    provideFormatter = true,
+  },
+  root_markers = { ".git" },
 })
+
+vim.lsp.enable('jsonls')
 
 lspconfig('pyright', {
   on_attach = nvlsp.on_attach,
