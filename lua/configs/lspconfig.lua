@@ -3,7 +3,7 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = vim.lsp.config;
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright", "jdtls", "tailwindcss"}
+local servers = { "html", "cssls", "pyright", "jdtls", "tailwindcss", 'ts_ls', 'eslint' }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 lspconfig('ts_ls',
@@ -48,6 +48,13 @@ lspconfig('pyright', {
   end
 end
 
+vim.lsp.enable('pyright')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('html')
+vim.lsp.enable('cssls')
+vim.lsp.enable('jdtls')
+vim.lsp.enable('eslint')
 -- configuring single server, example: typescript
 -- lspconfig.tsserver.setup {
 --   on_attach = nvlsp.on_attach,
