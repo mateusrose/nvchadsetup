@@ -26,7 +26,28 @@ return {
       -- ==============================
       -- DAP UI Setup
       -- ==============================
-      dapui.setup()
+      require("dapui").setup({
+        layouts = {
+          {
+            elements = {
+              "scopes",
+              "breakpoints",
+              "stacks",
+              "watches",
+            },
+            size = 40, -- adjust as needed
+            position = "left",
+          },
+          {
+            elements = {
+              "repl",
+              "console", -- <--- Add this line
+            },
+            size = 0.25,
+            position = "bottom",
+          },
+        },
+      })
       require("nvim-dap-virtual-text").setup()
 
       dap.listeners.after.event_initialized["dapui_config"] = function()
