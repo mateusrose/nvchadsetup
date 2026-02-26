@@ -26,7 +26,6 @@ require "configs.autocmds"
 require "options"
 require "nvchad.autocmds"
 -- custom snippets & helpers
-
 --require("telescope").load_extension("yank_history")
 
 vim.schedule(function()

@@ -8,25 +8,17 @@ return {
   },
   config = function()
     require("codecompanion").setup({
-      adapters = {
-        -- This is the new 2026 adapter for Workspace/Enterprise users
-        gemini_code_assist = function()
-          return require("codecompanion.adapters").extend("gemini_code_assist", {
-            env = {
-              project_id = "gen-lang-client-0488495184",
-            },
-            schema = {
-              model = {
-                default = "gemini-2.0-flash", -- Or gemini-2.5-pro if your company allows it
-              },
-            },
-          })
-        end,
-      },
       strategies = {
-        chat = { adapter = "gemini_code_assist" },
-        inline = { adapter = "gemini_code_assist" },
+        chat = { adapter = "gemini_cli" },
+        inline = { adapter = "gemini_cli" }, -- This handles the "logic" for code changes
+        agent = { adapter = "gemini_cli" },
       },
+      -- Add this section to enable the ghost text/suggestions
+      opts = {
+        send_code = true,
+        use_default_actions = true,
+        use_default_prompts = true,
+      }
     })
 
     -- Keybindings
@@ -42,7 +34,6 @@ return {
         provider = 'gemini',
         provider_options = {
           gemini = {
-            model = 'gemini-2.0-flash',
             -- This dynamically fetches your company token from gcloud
             api_key = function()
               return vim.fn.system("gcloud auth application-default print-access-token"):gsub("%s+", "")
