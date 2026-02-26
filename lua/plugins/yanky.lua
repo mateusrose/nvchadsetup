@@ -1,5 +1,4 @@
 return {
-  --[[
   {
     'gbprod/yanky.nvim',
     lazy = false,
@@ -25,5 +24,4 @@ return {
       })
     end,
   },
-  ]]
 }

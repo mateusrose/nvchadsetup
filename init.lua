@@ -17,7 +17,6 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
-require("configs.dap")
 require("configs.treesitter")
 require("configs.mason")
 

@@ -24,7 +24,7 @@ return {
         capabilities = nvlsp.capabilities,
 
         -- only for TS/TSX:
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+        filetypes = { "typescript", "typescriptreact", "javascriptreact" },
 
         -- tell tsserver where to probe for plugins:
         init_options = {

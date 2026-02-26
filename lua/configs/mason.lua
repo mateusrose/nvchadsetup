@@ -46,7 +46,6 @@ require("mason-tool-installer").setup({
     "eslint-lsp",
     "eslint_d",
     "html-lsp",
-    "js-debug-adapter",
     "json-lsp",
     "lua-language-server",
     "nextls",
