@@ -1,11 +1,15 @@
-return {
+return
   {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      require("lspsaga").setup({
-        -- Optional configurations if needed
-      })
-    end,
-  },
-}
+    {
+      'nvimdev/lspsaga.nvim',
+      config = function()
+        require('lspsaga').setup({
+          -- Add any custom configuration here if needed
+        })
+      end,
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- Optional
+        'nvim-tree/nvim-web-devicons',     -- Optional
+      }
+    }
+  }

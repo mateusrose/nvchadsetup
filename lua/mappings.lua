@@ -3,6 +3,25 @@ require "nvchad.mappings"
 -- add yours here
 
 local map = vim.keymap.set
+
+map("n", ";", ":", { desc = "CMD enter command mode" })
+map("i", "jk", "<ESC>")
+
+vim.keymap.set("n", "<space>kk", vim.diagnostic.open_float, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<space>kc', function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local diags = vim.diagnostic.get(bufnr, { lnum = cursor[1] - 1 })
+  if #diags > 0 then
+    local msg = diags[1].message
+    vim.fn.setreg('+', msg)
+    vim.notify("Diagnostic copied to clipboard")
+  else
+    vim.notify("No diagnostic found", vim.log.levels.WARN)
+  end
+end, { desc = "Copy diagnostic under cursor" })
+
 local km = vim.api.nvim_set_keymap
 
 map("n", "<leader>fv", function()
@@ -30,14 +49,5 @@ km("n","<leader>fr",":Telescope resume<CR>",opts)
 km("n","<leader>fn",":Nvdash<CR>",opts)
 
 map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP: Telescope references" })
--- usual reference with normal
---vim.keymap.set('n', 'gr', function()
---  vim.lsp.buf.references()
--- end, { desc = "LSP: References" })
--- … add more here
-
---if dap_mappings.setup then
- --   dap_mappings.setup()  -- Call the setup function to register DAP mappings
---end
-
+require("utils.snippets")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

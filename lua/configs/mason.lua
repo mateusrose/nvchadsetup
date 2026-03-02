@@ -1,5 +1,5 @@
 require("mason").setup()
-
+--[[
 require("sonarlint").setup {
   server = {
     cmd = {
@@ -37,7 +37,7 @@ require("sonarlint").setup {
     },
   },
 }
-
+]]
 require("mason-tool-installer").setup({
   ensure_installed = {
     "css-lsp",
@@ -48,6 +48,7 @@ require("mason-tool-installer").setup({
     "html-lsp",
     "json-lsp",
     "lua-language-server",
+    "js-debug-adapter",
     "nextls",
     "prettier",
     "pyright",

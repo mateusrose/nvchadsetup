@@ -3,7 +3,7 @@ return {
     "mhartington/formatter.nvim",
     event="VeryLazy",
     opts = function ()
-      return require "custom.configs.formatter"
+      return require "configs.formatter"
     end
   },
 }
