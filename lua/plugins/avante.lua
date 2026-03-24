@@ -15,7 +15,7 @@ return {
       providers = {
         copilot = {
           endpoint = "https://api.githubcopilot.com",
-          model = "gpt-4.1",            -- Best/most advanced for chat
+          model = "gpt-5-mini",            -- Best/most advanced for chat
           proxy = nil,
           allow_insecure = false,
           timeout = 30000,
