@@ -9,16 +9,16 @@ return {
       -- Terminal window settings
       window = {
         split_ratio = 0.4,      -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
-        position = "vertical",  -- Position of the window: "botright", "topleft", "vertical", "float", etc.
+        position = "float",  -- Position of the window: "botright", "topleft", "vertical", "float", etc.
         enter_insert = true,    -- Whether to enter insert mode when opening Claude Code
         hide_numbers = true,    -- Hide line numbers in the terminal window
         hide_signcolumn = true, -- Hide the sign column in the terminal window
         -- Floating window configuration (only applies when position = "float")
         float = {
-          width = "80%",        -- Width: number of columns or percentage string
-          height = "80%",       -- Height: number of rows or percentage string
-          row = "center",       -- Row position: number, "center", or percentage string
-          col = "center",       -- Column position: number, "center", or percentage string
+          width = "40%",        -- Width: number of columns or percentage string
+          height = "90%",       -- Height: number of rows or percentage string
+          row = "5%",       -- Row position: number, "center", or percentage string
+          col = "80%",       -- Column position: number, "center", or percentage string
           relative = "editor",  -- Relative to: "editor" or "cursor"
           border = "rounded",   -- Border style: "none", "single", "double", "rounded", "solid", "shadow"
         },
@@ -66,5 +66,38 @@ return {
     vim.keymap.set('n', 'cc', function();
       require('claude-code').toggle()
     end, { desc = 'Toggle Claude Code' })
+
+    -- Move the Claude Code floating window with <C-S-h/j/k/l> in terminal mode
+    local move_step = 5
+    local function move_float(dr, dc)
+      local win = vim.api.nvim_get_current_win()
+      local cfg = vim.api.nvim_win_get_config(win)
+      if cfg.relative == "" then return end
+      cfg.row = (cfg.row or 0) + dr
+      cfg.col = (cfg.col or 0) + dc
+      vim.api.nvim_win_set_config(win, cfg)
+    end
+
+    vim.keymap.set('t', '<S-Left>', function() move_float(0, -move_step) end, { desc = 'Move float left' })
+    vim.keymap.set('t', '<S-Right>', function() move_float(0, move_step) end, { desc = 'Move float right' })
+    vim.keymap.set('t', '<S-Up>', function() move_float(-move_step, 0) end, { desc = 'Move float up' })
+    vim.keymap.set('t', '<S-Down>', function() move_float(move_step, 0) end, { desc = 'Move float down' })
+
+    -- Resize the Claude Code floating window with <C-S-arrows> in terminal mode
+    -- Right/Up = bigger, Left/Down = smaller
+    local resize_step = 3
+    local function resize_float(dw, dh)
+      local win = vim.api.nvim_get_current_win()
+      local cfg = vim.api.nvim_win_get_config(win)
+      if cfg.relative == "" then return end
+      cfg.width = math.max(10, (cfg.width or 40) + dw)
+      cfg.height = math.max(5, (cfg.height or 20) + dh)
+      vim.api.nvim_win_set_config(win, cfg)
+    end
+
+    vim.keymap.set('t', '<C-Right>', function() resize_float(resize_step, 0) end, { desc = 'Widen float' })
+    vim.keymap.set('t', '<C-Left>', function() resize_float(-resize_step, 0) end, { desc = 'Narrow float' })
+    vim.keymap.set('t', '<C-Up>', function() resize_float(0, resize_step) end, { desc = 'Grow float taller' })
+    vim.keymap.set('t', '<C-Down>', function() resize_float(0, -resize_step) end, { desc = 'Shrink float shorter' })
   end
 }
