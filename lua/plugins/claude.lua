@@ -67,6 +67,62 @@ return {
       require('claude-code').toggle()
     end, { desc = 'Toggle Claude Code' })
 
+    -- Helper: get the Claude Code terminal channel
+    local function get_claude_chan()
+      local cc = require('claude-code')
+      local instance = cc.claude_code.current_instance
+      if not instance then return nil end
+      local bufnr = cc.claude_code.instances[instance]
+      if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then return nil end
+      return vim.b[bufnr].terminal_job_id
+    end
+
+    -- Helper: send text to Claude Code terminal, opening it first if needed
+    local function send_to_claude(text)
+      local chan = get_claude_chan()
+      if not chan then
+        require('claude-code').toggle()
+        vim.schedule(function()
+          chan = get_claude_chan()
+          if chan then
+            vim.api.nvim_chan_send(chan, text)
+          end
+        end)
+      else
+        -- Make sure the window is visible
+        local cc = require('claude-code')
+        local bufnr = cc.claude_code.instances[cc.claude_code.current_instance]
+        if bufnr and #vim.fn.win_findbuf(bufnr) == 0 then
+          cc.toggle()
+        end
+        vim.api.nvim_chan_send(chan, text)
+      end
+    end
+
+    -- Send current file:line reference to Claude
+    vim.keymap.set('n', '<leader>cl', function()
+      local file = vim.fn.expand('%:.')  -- relative path
+      local line = vim.fn.line('.')
+      send_to_claude(file .. ':' .. line .. ' ')
+    end, { desc = 'Send file:line to Claude' })
+
+    -- Send visual selection with file context to Claude
+    vim.keymap.set('v', '<leader>cs', function()
+      vim.cmd('normal! "zy')
+      local file = vim.fn.expand('%:.')
+      local start_line = vim.fn.line("'<")
+      local end_line = vim.fn.line("'>")
+      local selection = vim.fn.getreg('z')
+      local text = file .. ':' .. start_line .. '-' .. end_line .. '\n```\n' .. selection .. '\n```\n'
+      send_to_claude(text)
+    end, { desc = 'Send selection to Claude' })
+
+    -- Send current file path to Claude
+    vim.keymap.set('n', '<leader>cf', function()
+      local file = vim.fn.expand('%:.')
+      send_to_claude(file .. ' ')
+    end, { desc = 'Send file path to Claude' })
+
     -- Move the Claude Code floating window with <C-S-h/j/k/l> in terminal mode
     local move_step = 5
     local function move_float(dr, dc)
