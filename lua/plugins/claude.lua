@@ -63,7 +63,7 @@ return {
         scrolling = true,         -- Enable scrolling keymaps (<C-f/b>) for page up/down
       }
     })
-    vim.keymap.set('n', 'cc', function();
+    vim.keymap.set('n', '<leader>cc', function()
       require('claude-code').toggle()
     end, { desc = 'Toggle Claude Code' })
 
@@ -106,22 +106,40 @@ return {
       send_to_claude(file .. ':' .. line .. ' ')
     end, { desc = 'Send file:line to Claude' })
 
-    -- Send visual selection with file context to Claude
+    -- Send visual selection file:range reference to Claude (no content, saves tokens)
     vim.keymap.set('v', '<leader>cs', function()
-      vim.cmd('normal! "zy')
       local file = vim.fn.expand('%:.')
       local start_line = vim.fn.line("'<")
       local end_line = vim.fn.line("'>")
-      local selection = vim.fn.getreg('z')
-      local text = file .. ':' .. start_line .. '-' .. end_line .. '\n```\n' .. selection .. '\n```\n'
-      send_to_claude(text)
-    end, { desc = 'Send selection to Claude' })
+      send_to_claude(file .. ':' .. start_line .. '-' .. end_line .. ' ')
+    end, { desc = 'Send file:range to Claude' })
 
     -- Send current file path to Claude
     vim.keymap.set('n', '<leader>cf', function()
       local file = vim.fn.expand('%:.')
       send_to_claude(file .. ' ')
     end, { desc = 'Send file path to Claude' })
+
+    -- Focus the Claude Code window (open it if not visible)
+    vim.keymap.set('n', '<leader>cx', function()
+      local cc = require('claude-code')
+      local instance = cc.claude_code.current_instance
+      if not instance then
+        cc.toggle()
+        return
+      end
+      local bufnr = cc.claude_code.instances[instance]
+      if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+        cc.toggle()
+        return
+      end
+      local wins = vim.fn.win_findbuf(bufnr)
+      if #wins == 0 then
+        cc.toggle()
+      else
+        vim.api.nvim_set_current_win(wins[1])
+      end
+    end, { desc = 'Focus Claude Code window' })
 
     -- Move the Claude Code floating window with <C-S-h/j/k/l> in terminal mode
     local move_step = 5
