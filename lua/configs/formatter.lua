@@ -1,8 +1,5 @@
 local M = {
   filetype = {
-    javascriptreact = {
-      require("formatter.filetypes.javascript").prettier
-    },
     javascript = {
       require("formatter.filetypes.javascript").prettier
     },
