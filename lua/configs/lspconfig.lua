@@ -33,7 +33,7 @@ lspconfig('pyright', {
   capabilities = nvlsp.capabilities,
   settings = {
     python = {
-      pythonPath = '/home/mateusrosa/.pyenv/versions/3.8.20/bin/python'
+      pythonPath = '/home/cms/.pyenv/versions/3.12.13/bin/python'
     }
   }
 })
